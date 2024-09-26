@@ -1,0 +1,53 @@
+#!/bin/bash
+
+get_muted() {
+    pactl get-sink-mute @DEFAULT_SINK@ | sed -nr 's/^.*\s(no|yes)$/\1/p'
+}
+
+get_volume() {
+    pactl get-sink-volume @DEFAULT_SINK@ | sed -nr 's/^.*\s([0-9]+)%\s.*$/\1/p'
+}
+
+case "$1" in
+    mute)
+        if [ "$(get_volume)" -eq 0 ]
+        then
+            pactl set-sink-mute @DEFAULT_SINK@ 1
+        else
+            pactl set-sink-mute @DEFAULT_SINK@ toggle
+        fi
+        ;;
+    decrease)
+        if [ "$(get_muted)" = "no" ]
+        then
+            pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+            if [ "$(get_volume)" -eq 0 ]
+            then
+                pactl set-sink-mute @DEFAULT_SINK@ 1
+            fi
+        fi
+        ;;
+    increase)
+        if [ "$(get_muted)" = "yes" ]
+        then
+            pactl set-sink-mute @DEFAULT_SINK@ 0
+        fi
+
+        volume="$(get_volume)"
+        if [ "$volume" -ne 100 ]
+        then
+            if [ $((volume + 5)) -ge 100 ]
+            then
+                pactl set-sink-volume @DEFAULT_SINK@ 100%
+            else
+                pactl set-sink-volume @DEFAULT_SINK@ +5%
+            fi
+        fi
+        ;;
+    *)
+        echo "Usage: $0 {mute|decrease|increase}"
+        exit 2
+esac
+
+exit 0

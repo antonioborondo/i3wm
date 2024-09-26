@@ -1,0 +1,5 @@
+#!/bin/bash
+
+feh --no-fehbg --bg-fill "${HOME}/.background.image"
+
+exit 0

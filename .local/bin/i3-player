@@ -1,0 +1,18 @@
+#!/bin/bash
+
+case "$1" in
+    previous)
+        playerctl previous
+        ;;
+    play-pause)
+        playerctl play-pause
+        ;;
+    next)
+        playerctl next
+        ;;
+    *)
+        echo "Usage: $0 {previous|play-pause|next}"
+        exit 2
+esac
+
+exit 0

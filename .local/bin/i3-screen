@@ -1,0 +1,15 @@
+#!/bin/bash
+
+case "$1" in
+    laptop)
+        "${HOME}/.screenlayout/laptop.sh"
+        ;;
+    monitor)
+        "${HOME}/.screenlayout/monitor.sh"
+        ;;
+    *)
+        echo "Usage: $0 {laptop|monitor}"
+        exit 2
+esac
+
+exit 0

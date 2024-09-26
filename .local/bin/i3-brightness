@@ -1,0 +1,15 @@
+#!/bin/bash
+
+case "$1" in
+    decrease)
+        brightnessctl --min-value=20 set 5%-
+        ;;
+    increase)
+        brightnessctl set 5%+
+        ;;
+    *)
+        echo "Usage: $0 {decrease|increase}"
+        exit 2
+esac
+
+exit 0
