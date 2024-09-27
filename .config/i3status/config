@@ -5,6 +5,7 @@ general
 
 order += "battery all"
 order += "time"
+order += "volume master"
 
 battery all
 {
@@ -22,4 +23,11 @@ battery all
 time
 {
   format = "%Y-%m-%d %H:%M"
+}
+
+volume master
+{
+  device = "default"
+  format = "VOL %volume"
+  format_muted = "VOL MUT"
 }
