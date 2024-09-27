@@ -1,0 +1,11 @@
+general
+{
+  interval = 5
+}
+
+order += "time"
+
+time
+{
+  format = "%Y-%m-%d %H:%M"
+}
