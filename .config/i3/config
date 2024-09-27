@@ -186,6 +186,19 @@ bar {
         status_command i3status
 }
 
+####################################################################################################
+# Brightness
+#
+# Run the following commands in a shell once to make it work:
+#
+# sudo apt install brightnessctl
+# sudo usermod -aG video ${USER}
+# sudo shutdown --reboot now
+####################################################################################################
+
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-value=20 set 5%-
+
 ##################################################
 # Monitor
 ##################################################
