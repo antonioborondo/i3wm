@@ -3,7 +3,21 @@ general
   interval = 5
 }
 
+order += "battery all"
 order += "time"
+
+battery all
+{
+  format = "%status %percentage"
+  format_down = "No battery"
+  integer_battery_capacity = true
+  last_full_capacity = true
+  path = "/sys/class/power_supply/BAT%d/uevent"
+  status_bat = "BAT"
+  status_chr = "CHR"
+  status_full = "FUL"
+  status_unk = "UNK"
+}
 
 time
 {
