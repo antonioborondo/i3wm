@@ -235,3 +235,13 @@ bindsym $mod+u exec --no-startup-id i3monitor personal-laptop
 bindsym $mod+i exec --no-startup-id i3monitor personal-external
 bindsym $mod+o exec --no-startup-id i3monitor work-laptop
 bindsym $mod+p exec --no-startup-id i3monitor work-external
+
+####################################################################################################
+# Touchpad
+#
+# Run the following command in a shell once to make it work:
+#
+# sudo apt install xinput
+####################################################################################################
+
+exec xinput set-prop "DLL07BE:01 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
