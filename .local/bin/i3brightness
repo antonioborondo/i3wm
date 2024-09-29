@@ -1,0 +1,25 @@
+#!/bin/bash
+
+####################################################################################################
+# Control the screen brightness.
+#
+# Run the following commands in a shell once to make it work:
+#
+# sudo apt install brightnessctl
+# sudo usermod -aG video ${USER}
+# sudo shutdown --reboot now
+####################################################################################################
+
+case "$1" in
+  increase)
+    brightnessctl --quiet set 5%+
+    ;;
+  decrease)
+    brightnessctl --quiet --min-value=20 set 5%-
+    ;;
+  *)
+    echo "Usage: $0 {increase|decrease}"
+    exit 2
+esac
+
+exit 0
