@@ -227,10 +227,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-value=20 
 # Monitor
 ####################################################################################################
 
-bindsym $mod+u exec --no-startup-id i3monitor personal-laptop
-bindsym $mod+i exec --no-startup-id i3monitor personal-external
-bindsym $mod+o exec --no-startup-id i3monitor work-laptop
-bindsym $mod+p exec --no-startup-id i3monitor work-external
+bindsym $mod+m exec --no-startup-id i3monitor laptop
+bindsym $mod+Shift+m exec --no-startup-id i3monitor external
 
 ####################################################################################################
 # Touchpad
