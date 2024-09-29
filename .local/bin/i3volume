@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Increase, decrease or mute the volume.
+#
+# Requires pamixer, not available in Ubuntu 22.04 LTS.
+
+case "$1" in
+  increase)
+    if [[ $(uname -a) =~ "mega" ]]
+    then
+      pactl set-sink-volume @DEFAULT_SINK@ +5%
+    else
+      pamixer --increase 5
+    fi
+    ;;
+  decrease)
+    if [[ $(uname -a) =~ "mega" ]]
+    then
+      pactl set-sink-volume @DEFAULT_SINK@ -5%
+    else
+      pamixer --decrease 5
+    fi
+    ;;
+  mute)
+    if [[ $(uname -a) =~ "mega" ]]
+    then
+      pactl set-sink-mute @DEFAULT_SINK@ toggle
+    else
+      pamixer --toggle-mute
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {increase|decrease|mute}"
+    exit 2
+esac
+
+exit 0
