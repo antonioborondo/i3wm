@@ -1,33 +1,29 @@
 #!/bin/bash
 
-# Increase, decrease or mute the volume.
-#
-# Requires pamixer, not available in Ubuntu 22.04 LTS.
+####################################################################################################
+# Control the volume.
+####################################################################################################
 
 case "$1" in
   increase)
-    if [[ $(uname -a) =~ "mega" ]]
+    volume_left=$(pactl get-sink-volume @DEFAULT_SINK@ | grep "Volume" | awk '{print substr($5, 1, length($5) - 1)}')
+    volume_right=$(pactl get-sink-volume @DEFAULT_SINK@ | grep "Volume" | awk '{print substr($12, 1, length($12) - 1)}')
+    volume=$(( volume_left > volume_right ? volume_left : volume_right))
+    if [ $volume -ne 100 ]
     then
-      pactl set-sink-volume @DEFAULT_SINK@ +5%
-    else
-      pamixer --increase 5
+      if [[ $((volume+5)) -ge 100 ]]
+      then
+        pactl set-sink-volume @DEFAULT_SINK@ 100%
+      else
+        pactl set-sink-volume @DEFAULT_SINK@ +5%
+      fi
     fi
     ;;
   decrease)
-    if [[ $(uname -a) =~ "mega" ]]
-    then
-      pactl set-sink-volume @DEFAULT_SINK@ -5%
-    else
-      pamixer --decrease 5
-    fi
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
     ;;
   mute)
-    if [[ $(uname -a) =~ "mega" ]]
-    then
-      pactl set-sink-mute @DEFAULT_SINK@ toggle
-    else
-      pamixer --toggle-mute
-    fi
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
     ;;
   *)
     echo "Usage: $0 {increase|decrease|mute}"
