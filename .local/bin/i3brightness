@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ####################################################################################################
-# Control the screen brightness.
+# Control the brightness.
 #
 # Run the following commands in a shell once to make it work:
 #
