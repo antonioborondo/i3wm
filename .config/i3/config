@@ -223,6 +223,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id i3brightness decrease
 
 bindsym $mod+m exec --no-startup-id i3monitor laptop
 bindsym $mod+Shift+m exec --no-startup-id i3monitor external
+bindsym $mod+n exec --no-startup-id i3auto
 
 ####################################################################################################
 # Touchpad

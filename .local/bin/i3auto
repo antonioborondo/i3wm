@@ -8,4 +8,53 @@
 # sudo apt install python3 python-is-python3
 ####################################################################################################
 
-print("Hello, World!")
+import subprocess
+
+
+def get_outputs_info():
+    command = (
+        "xrandr | grep -A 1 --no-group-separator \" connected\" | awk '{print $1}'"
+    )
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+
+    lines = result.stdout.strip().split("\n")
+    output_info = []
+    for i in range(0, len(lines) - 1, 2):
+        output_id = lines[i]
+        output_resolution = lines[i + 1]
+        output_info.append((output_id, output_resolution))
+
+    return output_info
+
+
+def deactivate_outputs(outputs_info):
+    for output_id, _ in outputs_info:
+        command = f"xrandr --output {output_id} --off"
+        subprocess.run(command, shell=True)
+
+
+def activate_output(outputs_info, primary: bool):
+    for output_id, output_resolution in outputs_info:
+        if output_id == "eDP-1" and not primary:
+            continue
+        elif output_id != "eDP-1" and primary:
+            continue
+        else:
+            command = f"xrandr --output {output_id} --primary --mode {output_resolution} --pos 0x0 --rotate normal"
+            subprocess.run(command, shell=True)
+            return
+
+
+def main():
+    outputs_info = get_outputs_info()
+
+    deactivate_outputs(outputs_info)
+
+    if len(outputs_info) == 1:
+        activate_output(outputs_info, True)
+    else:
+        activate_output(outputs_info, False)
+
+
+if __name__ == "__main__":
+    main()
