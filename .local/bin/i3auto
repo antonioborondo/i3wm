@@ -9,6 +9,7 @@
 ####################################################################################################
 
 import subprocess
+from enum import Enum
 
 
 def get_outputs_info():
@@ -33,11 +34,16 @@ def deactivate_outputs(outputs_info):
         subprocess.run(command, shell=True)
 
 
-def activate_output(outputs_info, primary: bool):
+class OutputType(Enum):
+    PRIMARY = 1
+    SECONDARY = 2
+
+
+def activate_output(outputs_info, output_type: OutputType):
     for output_id, output_resolution in outputs_info:
-        if output_id == "eDP-1" and not primary:
+        if output_id == "eDP-1" and output_type == OutputType.SECONDARY:
             continue
-        elif output_id != "eDP-1" and primary:
+        elif output_id != "eDP-1" and output_type == OutputType.PRIMARY:
             continue
         else:
             command = f"xrandr --output {output_id} --primary --mode {output_resolution} --pos 0x0 --rotate normal"
@@ -51,9 +57,9 @@ def main():
     deactivate_outputs(outputs_info)
 
     if len(outputs_info) == 1:
-        activate_output(outputs_info, True)
+        activate_output(outputs_info, OutputType.PRIMARY)
     else:
-        activate_output(outputs_info, False)
+        activate_output(outputs_info, OutputType.SECONDARY)
 
 
 if __name__ == "__main__":
