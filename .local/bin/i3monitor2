@@ -32,12 +32,13 @@ def get_outputs_info():
 def deactivate_outputs(outputs_info):
     for output_id, _ in outputs_info:
         command = f"xrandr --output {output_id} --off"
-        subprocess.run(command, shell=True)
+        #subprocess.run(command, shell=True)
 
 
 class OutputType(Enum):
-    PRIMARY = 1
-    SECONDARY = 2
+    AUTO = 1
+    PRIMARY = 2
+    SECONDARY = 3
 
 
 def activate_output(outputs_info, output_type: OutputType):
@@ -48,8 +49,19 @@ def activate_output(outputs_info, output_type: OutputType):
             continue
         else:
             command = f"xrandr --output {output_id} --primary --mode {output_resolution} --pos 0x0 --rotate normal"
-            subprocess.run(command, shell=True)
+            #subprocess.run(command, shell=True)
             return
+
+def get_output_type(outputs_info, output_type):
+    if output_type == "auto":
+        if len(outputs_info) == 1:
+            return OutputType.PRIMARY
+        else:
+            return OutputType.SECONDARY
+    elif output_type == "primary":
+        return OutputType.PRIMARY
+    elif output_type == "secondary":
+        return OutputType.SECONDARY
 
 
 def main():
@@ -64,18 +76,13 @@ def main():
 
     arguments = arguments_parser.parse_args()
 
-    print(f"param1: {arguments.type}")
-
     outputs_info = get_outputs_info()
 
-    # deactivate_outputs(outputs_info)
+    output_type = get_output_type(outputs_info, arguments.type)
 
+    deactivate_outputs(outputs_info)
 
-#
-# if len(outputs_info) == 1:
-#    activate_output(outputs_info, OutputType.PRIMARY)
-# else:
-#    activate_output(outputs_info, OutputType.SECONDARY)
+    activate_output(outputs_info, output_type)
 
 
 if __name__ == "__main__":
