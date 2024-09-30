@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 
 ####################################################################################################
-# Automatic monitor selection.
+# Control de monitor.
 #
-# Run the following commands in a shell once to make it work:
+# Run the following command in a shell once to make it work:
 #
 # sudo apt install python3 python-is-python3
 ####################################################################################################
 
 import subprocess
 from enum import Enum
+import argparse
 
 
 def get_outputs_info():
@@ -52,14 +53,29 @@ def activate_output(outputs_info, output_type: OutputType):
 
 
 def main():
+    arguments_parser = argparse.ArgumentParser(description="Control the monitor.")
+
+    arguments_parser.add_argument(
+        "--type",
+        choices=["auto", "primary", "secondary"],
+        default="auto",
+        help="monitor type",
+    )
+
+    arguments = arguments_parser.parse_args()
+
+    print(f"param1: {arguments.type}")
+
     outputs_info = get_outputs_info()
 
-    deactivate_outputs(outputs_info)
+    # deactivate_outputs(outputs_info)
 
-    if len(outputs_info) == 1:
-        activate_output(outputs_info, OutputType.PRIMARY)
-    else:
-        activate_output(outputs_info, OutputType.SECONDARY)
+
+#
+# if len(outputs_info) == 1:
+#    activate_output(outputs_info, OutputType.PRIMARY)
+# else:
+#    activate_output(outputs_info, OutputType.SECONDARY)
 
 
 if __name__ == "__main__":
