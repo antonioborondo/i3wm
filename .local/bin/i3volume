@@ -6,12 +6,10 @@
 
 case "$1" in
   increase)
-    volume_left=$(pactl get-sink-volume @DEFAULT_SINK@ | grep "Volume" | awk '{print substr($5, 1, length($5) - 1)}')
-    volume_right=$(pactl get-sink-volume @DEFAULT_SINK@ | grep "Volume" | awk '{print substr($12, 1, length($12) - 1)}')
-    volume=$(( volume_left > volume_right ? volume_left : volume_right))
+    volume=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print substr($5, 1, length($5) - 1)}')
     if [ $volume -ne 100 ]
     then
-      if [[ $((volume+5)) -ge 100 ]]
+      if [ $((volume + 5)) -ge 100 ]
       then
         pactl set-sink-volume @DEFAULT_SINK@ 100%
       else
