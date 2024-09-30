@@ -12,10 +12,10 @@
 
 case "$1" in
   increase)
-    brightnessctl --quiet set 5%+
+    brightnessctl set 5%+
     ;;
   decrease)
-    brightnessctl --quiet --min-value=20 set 5%-
+    brightnessctl --min-value=20 set 5%-
     ;;
   *)
     echo "Usage: $0 {increase|decrease}"
