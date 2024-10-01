@@ -66,8 +66,11 @@ def get_output_type(outputs, output_type) -> OutputType:
 
 
 def enable_output(output: Output):
-    command = f"xrandr --output {output.id} --mode {output.resolution} --pos 0x0 --primary --rotate normal"
+    # Add dpi to the following command shows correctly the dmenu bar.
+    command = f"xrandr --output {output.id} --dpi {output.dpi()} --mode {output.resolution} --pos 0x0 --primary --rotate normal" 
     subprocess.run(command, shell=True)
+    #command = f'echo "Xft.dpi: {output.dpi()}" > ~/.Xresources && xrdb ~/.Xresources'
+    #subprocess.run(command, shell=True)
 
 
 def disable_output(output: Output):
