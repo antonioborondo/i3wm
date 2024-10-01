@@ -31,6 +31,12 @@ class Output:
         else:
             return OutputType.SECONDARY
 
+    def dpi(self) -> str:
+        if self.resolution == "3456x2160":
+            return "192"
+        else:
+            return "96"
+
 
 def get_outputs() -> List[Output]:
     command = (
