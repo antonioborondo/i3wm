@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -205,25 +205,53 @@ bindsym $mod+Delete mode "$mode_system"
 ####################################################################################################
 # Volume
 ####################################################################################################
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id i3volume increase && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id i3volume decrease && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id i3volume mute && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id i3volume decrease && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id i3volume increase && $refresh_i3status
+
+####################################################################################################
+# Playback
+####################################################################################################
+# TODO
+#XF86AudioPrev
+#XF86AudioPlay
+#XF86AudioNext
+
+####################################################################################################
+# Output
+####################################################################################################
+set $mode_output Output: (1) auto, (2) primary, (3) secondary
+mode "$mode_output" {
+  bindsym 1 exec --no-startup-id i3output --type auto, mode "default"
+  bindsym 2 exec --no-startup-id i3output --type primary, mode "default"
+  bindsym 3 exec --no-startup-id i3output --type secondary, mode "default"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+p mode "$mode_output"
+bindsym $mod+Shift+p exec --no-startup-id i3output --type auto
+
+# Legacy
+bindsym $mod+m exec --no-startup-id i3monitor laptop
+bindsym $mod+Shift+m exec --no-startup-id i3monitor external
+
+####################################################################################################
+# Search
+####################################################################################################
+# TODO
 
 ####################################################################################################
 # Brightness
 ####################################################################################################
-
-bindsym XF86MonBrightnessUp exec --no-startup-id i3brightness increase
 bindsym XF86MonBrightnessDown exec --no-startup-id i3brightness decrease
+bindsym XF86MonBrightnessUp exec --no-startup-id i3brightness increase
 
 ####################################################################################################
-# Monitor
+# Antenna
 ####################################################################################################
-
-bindsym $mod+m exec --no-startup-id i3monitor laptop
-bindsym $mod+Shift+m exec --no-startup-id i3monitor external
-bindsym $mod+n exec --no-startup-id i3auto
+# TODO
 
 ####################################################################################################
 # Touchpad
