@@ -66,7 +66,7 @@ def get_output_type(outputs, output_type) -> OutputType:
 
 
 def enable_output(output: Output):
-    # Add dpi to the following command shows correctly the dmenu bar.
+    # xrandr --dpi sets the correct DPI for dmenu.
     command = f"xrandr --output {output.id} --dpi {output.dpi()} --mode {output.resolution} --pos 0x0 --primary --rotate normal" 
     subprocess.run(command, shell=True)
     #command = f'echo "Xft.dpi: {output.dpi()}" > ~/.Xresources && xrdb ~/.Xresources'
