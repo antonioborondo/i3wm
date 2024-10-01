@@ -235,11 +235,6 @@ bindsym $mod+Shift+p exec --no-startup-id i3output --type auto
 bindsym Mod4+p mode "$mode_output"
 bindsym Mod4+Shift+p exec --no-startup-id i3output --type auto
 
-
-# Legacy
-bindsym $mod+m exec --no-startup-id i3monitor laptop
-bindsym $mod+Shift+m exec --no-startup-id i3monitor external
-
 ####################################################################################################
 # Search
 ####################################################################################################
