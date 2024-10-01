@@ -66,14 +66,14 @@ def get_output_type(outputs, output_type) -> OutputType:
 
 
 def enable_output(output: Output):
-    # Set the DPI with xrandr to ensure i3 UI elements are displayed correctly.
-    command = f"xrandr --output {output.id} --dpi {output.dpi()} --mode {output.resolution} --pos 0x0 --primary --rotate normal" 
+    # Set the DPI with xrdb to ensure the mouse and GTK apps are displayed correctly.
+    # Note: GTK apps need to be restarted for the changes to take effect.
+    command = f'echo "Xft.dpi: {output.dpi()}" | xrdb -merge'
     subprocess.run(command, shell=True)
-    # Sets the correct DPI for the mouse but the mouse over dmenu looks big
-    # After restarting i3 looking good
-    # if gnome apps are closed and reopen they look good
-    #command = f'echo "Xft.dpi: {output.dpi()}" > ~/.Xresources && xrdb ~/.Xresources'
-    #subprocess.run(command, shell=True)
+
+    # Set the DPI with xrandr to ensure i3 UI elements are displayed correctly.
+    command = f"xrandr --output {output.id} --dpi {output.dpi()} --mode {output.resolution} --pos 0x0 --primary --rotate normal"
+    subprocess.run(command, shell=True)
 
 
 def disable_output(output: Output):
@@ -88,9 +88,11 @@ def enable_outputs(outputs: List[Output], output_type: OutputType):
         else:
             disable_output(output)
 
+
 def restart_i3():
-    command = "i3-msg restart" 
+    command = "i3-msg restart"
     subprocess.run(command, shell=True)
+
 
 def main():
     arguments_parser = argparse.ArgumentParser(description="Control the output.")
