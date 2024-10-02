@@ -211,7 +211,7 @@ bindsym Mod4+p mode "$mode_output"
 bindsym Mod4+Shift+p exec --no-startup-id i3-output --type primary
 
 # Search
-# TODO
+bindsym XF86Search exec --no-startup-id dmenu_run
 
 # Brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id i3-brightness decrease
