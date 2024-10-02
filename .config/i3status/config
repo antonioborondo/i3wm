@@ -3,9 +3,9 @@ general
     interval = 5
 }
 
+order += "volume master"
 order += "battery all"
 order += "time"
-order += "volume master"
 
 battery all
 {
