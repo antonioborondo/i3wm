@@ -195,20 +195,20 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume increase && $refresh
 # TODO
 
 # Output
-set $mode_output Output: (1) auto, (2) primary, (3) secondary
+set $mode_output Output: (a) auto, (p) primary, (s) secondary
 mode "$mode_output" {
-    bindsym 1 exec --no-startup-id i3-output --type auto, mode "default"
-    bindsym 2 exec --no-startup-id i3-output --type primary, mode "default"
-    bindsym 3 exec --no-startup-id i3-output --type secondary, mode "default"
+    bindsym a exec --no-startup-id i3-output --type auto, mode "default"
+    bindsym p exec --no-startup-id i3-output --type primary, mode "default"
+    bindsym s exec --no-startup-id i3-output --type secondary, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
 bindsym $mod+p mode "$mode_output"
-bindsym $mod+Shift+p exec --no-startup-id i3-output --type auto
+bindsym $mod+Shift+p exec --no-startup-id i3-output --type primary
 bindsym Mod4+p mode "$mode_output"
-bindsym Mod4+Shift+p exec --no-startup-id i3-output --type auto
+bindsym Mod4+Shift+p exec --no-startup-id i3-output --type primary
 
 # Search
 # TODO
