@@ -1,6 +1,6 @@
 general
 {
-  interval = 5
+    interval = 5
 }
 
 order += "battery all"
@@ -9,25 +9,25 @@ order += "volume master"
 
 battery all
 {
-  format = "%status %percentage"
-  format_down = "No battery"
-  integer_battery_capacity = true
-  last_full_capacity = true
-  path = "/sys/class/power_supply/BAT%d/uevent"
-  status_bat = "BAT"
-  status_chr = "CHR"
-  status_full = "FUL"
-  status_unk = "UNK"
+    format = "%status %percentage"
+    format_down = "No battery"
+    integer_battery_capacity = true
+    last_full_capacity = true
+    path = "/sys/class/power_supply/BAT%d/uevent"
+    status_bat = "BAT"
+    status_chr = "CHR"
+    status_full = "FUL"
+    status_unk = "UNK"
 }
 
 time
 {
-  format = "%Y-%m-%d %H:%M"
+    format = "%Y-%m-%d %H:%M"
 }
 
 volume master
 {
-  device = "default"
-  format = "VOL %volume"
-  format_muted = "VOL MUT"
+    device = "default"
+    format = "VOL %volume"
+    format_muted = "VOL MUT"
 }

@@ -197,18 +197,18 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume increase && $refresh
 # Output
 set $mode_output Output: (1) auto, (2) primary, (3) secondary
 mode "$mode_output" {
-    bindsym 1 exec --no-startup-id i3output --type auto, mode "default"
-    bindsym 2 exec --no-startup-id i3output --type primary, mode "default"
-    bindsym 3 exec --no-startup-id i3output --type secondary, mode "default"
+    bindsym 1 exec --no-startup-id i3-output --type auto, mode "default"
+    bindsym 2 exec --no-startup-id i3-output --type primary, mode "default"
+    bindsym 3 exec --no-startup-id i3-output --type secondary, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
 bindsym $mod+p mode "$mode_output"
-bindsym $mod+Shift+p exec --no-startup-id i3output --type auto
+bindsym $mod+Shift+p exec --no-startup-id i3-output --type auto
 bindsym Mod4+p mode "$mode_output"
-bindsym Mod4+Shift+p exec --no-startup-id i3output --type auto
+bindsym Mod4+Shift+p exec --no-startup-id i3-output --type auto
 
 # Search
 # TODO
@@ -223,12 +223,12 @@ bindsym XF86MonBrightnessUp exec --no-startup-id i3-brightness increase
 # System
 set $mode_system System: (1) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id i3-system lock, mode "default"
+    bindsym e exec --no-startup-id i3-system logout, mode "default"
+    bindsym s exec --no-startup-id i3-system suspend, mode "default"
+    bindsym h exec --no-startup-id i3-system hibernate, mode "default"
+    bindsym r exec --no-startup-id i3-system reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3-system shutdown, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

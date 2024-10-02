@@ -1,12 +1,8 @@
 #!/usr/bin/env python
 
-####################################################################################################
-# Control the output.
-#
 # Run the following command in a shell once to make it work:
 #
 # sudo apt install python3 python-is-python3
-####################################################################################################
 
 from dataclasses import dataclass
 from enum import Enum
