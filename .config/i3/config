@@ -191,8 +191,10 @@ bindsym XF86AudioMute exec --no-startup-id i3-volume mute && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id i3-volume decrease && $refresh_i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume increase && $refresh_i3status
 
-# Playback
-# TODO
+# Player
+bindsym XF86AudioPrev exec --no-startup-id i3-player previous
+bindsym XF86AudioPlay exec --no-startup-id i3-player play-pause
+bindsym XF86AudioNext exec --no-startup-id i3-player next
 
 # Output
 set $mode_output Output: (1) auto, (2) primary, (3) secondary
