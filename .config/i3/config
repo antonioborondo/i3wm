@@ -238,11 +238,9 @@ bindsym Mod4+Shift+p exec --no-startup-id i3output --type auto
 ####################################################################################################
 # TODO
 
-####################################################################################################
 # Brightness
-####################################################################################################
-bindsym XF86MonBrightnessDown exec --no-startup-id i3brightness decrease
-bindsym XF86MonBrightnessUp exec --no-startup-id i3brightness increase
+bindsym XF86MonBrightnessDown exec --no-startup-id i3-brightness decrease
+bindsym XF86MonBrightnessUp exec --no-startup-id i3-brightness increase
 
 ####################################################################################################
 # Antenna
