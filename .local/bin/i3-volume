@@ -20,7 +20,7 @@ case "$1" in
         fi
         ;;
     *)
-        echo "Usage: $0 {increase|decrease|mute}"
+        echo "Usage: $0 {mute|decrease|increase}"
         exit 2
 esac
 

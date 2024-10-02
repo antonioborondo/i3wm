@@ -14,7 +14,7 @@ case "$1" in
         brightnessctl set 5%+
         ;;
     *)
-        echo "Usage: $0 {increase|decrease}"
+        echo "Usage: $0 {decrease|increase}"
         exit 2
 esac
 
