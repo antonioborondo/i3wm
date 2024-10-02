@@ -150,7 +150,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -195,11 +195,11 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume increase && $refresh
 # TODO
 
 # Output
-set $mode_output Output: (a) auto, (p) primary, (s) secondary
+set $mode_output Output: (1) auto, (2) primary, (3) secondary
 mode "$mode_output" {
-    bindsym a exec --no-startup-id i3-output --type auto, mode "default"
-    bindsym p exec --no-startup-id i3-output --type primary, mode "default"
-    bindsym s exec --no-startup-id i3-output --type secondary, mode "default"
+    bindsym 1 exec --no-startup-id i3-output --type auto, mode "default"
+    bindsym 2 exec --no-startup-id i3-output --type primary, mode "default"
+    bindsym 3 exec --no-startup-id i3-output --type secondary, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -221,14 +221,14 @@ bindsym XF86MonBrightnessUp exec --no-startup-id i3-brightness increase
 # TODO
 
 # System
-set $mode_system System: (1) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System: (1) lock, (2) logout, (3) suspend, (4) hibernate, (5) reboot, (6) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3-system lock, mode "default"
-    bindsym e exec --no-startup-id i3-system logout, mode "default"
-    bindsym s exec --no-startup-id i3-system suspend, mode "default"
-    bindsym h exec --no-startup-id i3-system hibernate, mode "default"
-    bindsym r exec --no-startup-id i3-system reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3-system shutdown, mode "default"
+    bindsym 1 exec --no-startup-id i3-system lock, mode "default"
+    bindsym 2 exec --no-startup-id i3-system logout, mode "default"
+    bindsym 3 exec --no-startup-id i3-system suspend, mode "default"
+    bindsym 4 exec --no-startup-id i3-system hibernate, mode "default"
+    bindsym 5 exec --no-startup-id i3-system reboot, mode "default"
+    bindsym 6 exec --no-startup-id i3-system shutdown, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
