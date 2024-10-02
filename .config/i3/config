@@ -186,46 +186,23 @@ bar {
         status_command i3status
 }
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-  bindsym l exec --no-startup-id i3exit lock, mode "default"
-  bindsym e exec --no-startup-id i3exit logout, mode "default"
-  bindsym s exec --no-startup-id i3exit suspend, mode "default"
-  bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-  bindsym r exec --no-startup-id i3exit reboot, mode "default"
-  bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-  # back to normal: Enter or Escape
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
-bindsym $mod+Delete mode "$mode_system"
-
 # Volume
 bindsym XF86AudioMute exec --no-startup-id i3-volume mute && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id i3-volume decrease && $refresh_i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume increase && $refresh_i3status
 
-####################################################################################################
 # Playback
-####################################################################################################
 # TODO
-#XF86AudioPrev
-#XF86AudioPlay
-#XF86AudioNext
 
-####################################################################################################
 # Output
-####################################################################################################
 set $mode_output Output: (1) auto, (2) primary, (3) secondary
 mode "$mode_output" {
-  bindsym 1 exec --no-startup-id i3output --type auto, mode "default"
-  bindsym 2 exec --no-startup-id i3output --type primary, mode "default"
-  bindsym 3 exec --no-startup-id i3output --type secondary, mode "default"
+    bindsym 1 exec --no-startup-id i3output --type auto, mode "default"
+    bindsym 2 exec --no-startup-id i3output --type primary, mode "default"
+    bindsym 3 exec --no-startup-id i3output --type secondary, mode "default"
 
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+p mode "$mode_output"
@@ -233,26 +210,28 @@ bindsym $mod+Shift+p exec --no-startup-id i3output --type auto
 bindsym Mod4+p mode "$mode_output"
 bindsym Mod4+Shift+p exec --no-startup-id i3output --type auto
 
-####################################################################################################
 # Search
-####################################################################################################
 # TODO
 
 # Brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id i3-brightness decrease
 bindsym XF86MonBrightnessUp exec --no-startup-id i3-brightness increase
 
-####################################################################################################
 # Antenna
-####################################################################################################
 # TODO
 
-####################################################################################################
-# Touchpad
-#
-# Run the following command in a shell once to make it work:
-#
-# sudo apt install xinput
-####################################################################################################
+# System
+set $mode_system System: (1) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-#exec xinput set-prop "DLL07BE:01 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Delete mode "$mode_system"
