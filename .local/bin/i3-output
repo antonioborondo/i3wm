@@ -35,9 +35,7 @@ class Output:
 
 
 def get_outputs() -> List[Output]:
-    command = (
-        "xrandr | grep -A 1 --no-group-separator \" connected\" | awk '{print $1}'"
-    )
+    command = "xrandr | grep -A 1 --no-group-separator -w connected | awk '{print $1}'"
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     lines = result.stdout.strip().split("\n")
 
