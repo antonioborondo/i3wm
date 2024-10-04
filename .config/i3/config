@@ -197,20 +197,20 @@ bindsym XF86AudioPlay exec --no-startup-id i3-player play-pause
 bindsym XF86AudioNext exec --no-startup-id i3-player next
 
 # Output
-set $mode_output Output: (1) auto, (2) primary, (3) secondary
+set $mode_output Output: (1) auto, (2) laptop, (3) monitor
 mode "$mode_output" {
     bindsym 1 exec --no-startup-id i3-output --type auto, mode "default"
-    bindsym 2 exec --no-startup-id i3-output --type primary, mode "default"
-    bindsym 3 exec --no-startup-id i3-output --type secondary, mode "default"
+    bindsym 2 exec --no-startup-id i3-output --type laptop, mode "default"
+    bindsym 3 exec --no-startup-id i3-output --type monitor, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
 bindsym $mod+p mode "$mode_output"
-bindsym $mod+Shift+p exec --no-startup-id i3-output --type primary
+bindsym $mod+Shift+p exec --no-startup-id i3-output --type laptop
 bindsym Mod4+p mode "$mode_output"
-bindsym Mod4+Shift+p exec --no-startup-id i3-output --type primary
+bindsym Mod4+Shift+p exec --no-startup-id i3-output --type laptop
 
 # Search
 bindsym XF86Search exec --no-startup-id dmenu_run
