@@ -62,7 +62,11 @@ def calculate_dpi(resolution: Resolution, size: Size) -> int:
         size_y_in_in = size_y_in_cm / 2.54
         dpi_y = resolution.y / size_y_in_in
 
-        return int(max(dpi_x, dpi_y))
+        #return int(max(dpi_x, dpi_y))
+        if max(dpi_x, dpi_y) > 150:
+            return 192
+        else:
+            return 96
     else:
         return 96
 
