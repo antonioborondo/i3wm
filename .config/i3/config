@@ -236,7 +236,4 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Delete mode "$mode_system"
-
-# Set output
-exec --no-startup-id i3-output --type auto
+bindsym $mod+Shift+e mode "$mode_system"
