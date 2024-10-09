@@ -208,9 +208,9 @@ mode "$mode_output" {
 }
 
 bindsym $mod+o mode "$mode_output"
-bindsym $mod+Shift+o exec --no-startup-id i3-output --type laptop
+bindsym $mod+Shift+o exec --no-startup-id i3-output --type auto
 bindsym Mod4+p mode "$mode_output"
-bindsym Mod4+Shift+p exec --no-startup-id i3-output --type laptop
+bindsym Mod4+Shift+p exec --no-startup-id i3-output --type auto
 
 # Search
 bindsym XF86Search exec --no-startup-id dmenu_run
