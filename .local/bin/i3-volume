@@ -8,7 +8,7 @@ case "$1" in
         pactl set-sink-volume @DEFAULT_SINK@ -5%
         ;;
     increase)
-        volume=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | grep -Eo '[0-9]+')
+        volume=$(pactl get-sink-volume @DEFAULT_SINK@ | sed -nr 's/^.*\s([0-9]+)%\s.*$/\1/p')
         if [ $volume -ne 100 ]
         then
             if [ $((volume + 5)) -ge 100 ]
