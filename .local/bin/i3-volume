@@ -1,14 +1,44 @@
 #!/bin/bash
 
+get_muted() {
+    pactl get-sink-mute @DEFAULT_SINK@ | sed -nr 's/^.*\s(no|yes)$/\1/p'
+}
+
+get_volume() {
+    pactl get-sink-volume @DEFAULT_SINK@ | sed -nr 's/^.*\s([0-9]+)%\s.*$/\1/p'
+}
+
 case "$1" in
     mute)
-        pactl set-sink-mute @DEFAULT_SINK@ toggle
+        volume=$(get_volume)
+        if [ $volume -eq 0 ]
+        then
+            pactl set-sink-mute @DEFAULT_SINK@ 1
+        else
+            pactl set-sink-mute @DEFAULT_SINK@ toggle
+        fi
         ;;
     decrease)
-        pactl set-sink-volume @DEFAULT_SINK@ -5%
+        muted=$(get_muted)
+        if [ "$muted" == "no" ]
+        then
+            pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+            volume=$(get_volume)
+            if [ $volume -eq 0 ]
+            then
+                pactl set-sink-mute @DEFAULT_SINK@ 1
+            fi
+        fi
         ;;
     increase)
-        volume=$(pactl get-sink-volume @DEFAULT_SINK@ | sed -nr 's/^.*\s([0-9]+)%\s.*$/\1/p')
+        muted=$(get_muted)
+        if [ "$muted" == "yes" ]
+        then
+            pactl set-sink-mute @DEFAULT_SINK@ 0
+        fi
+
+        volume=$(get_volume)
         if [ $volume -ne 100 ]
         then
             if [ $((volume + 5)) -ge 100 ]
