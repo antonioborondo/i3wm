@@ -237,3 +237,6 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Shift+s mode "$mode_system"
+
+# Background
+exec --no-startup-id "i3-background ${HOME}/Pictures/Wallpaper/nebula.jpg"
