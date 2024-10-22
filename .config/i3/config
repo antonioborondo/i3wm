@@ -222,6 +222,21 @@ bindsym XF86MonBrightnessUp exec --no-startup-id i3-brightness increase
 # Antenna
 # TODO
 
+# Print screen
+set $mode_print_screen Print screen: (1) desktop, (2) window, (3) selection
+mode "$mode_print_screen" {
+    bindsym 1 exec --no-startup-id i3-print-screen desktop, mode "default"
+    bindsym 2 exec --no-startup-id i3-print-screen window, mode "default"
+    bindsym 3 exec --no-startup-id i3-print-screen selection, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym Print exec --no-startup-id i3-print-screen desktop
+bindsym Shift+Print mode "$mode_print_screen"
+bindsym Mod4+Shift+s mode "$mode_print_screen"
+
 # System
 set $mode_system System: (1) lock, (2) logout, (3) suspend, (4) hibernate, (5) reboot, (6) shutdown
 mode "$mode_system" {

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Run the following command in a shell once to make it work:
+#
+# sudo apt install maim xdotool xclip
+
+output_directory="${HOME}/Pictures/Screenshots"
+
+filename="${output_directory}/$(date +%F_%T).png"
+
+take_screenshot() {
+    mkdir --parents "$output_directory"
+    maim "$@" "$filename"
+    xclip -selection clipboard -t image/png < "$filename"
+}
+
+case "$1" in
+    desktop)
+        take_screenshot
+        ;;
+    window)
+        take_screenshot --window "$(xdotool getactivewindow)"
+        ;;
+    selection)
+        take_screenshot --select
+        ;;
+    *)
+        echo "Usage: $0 {desktop|window|selection}"
+        exit 2
+esac
+
+exit 0
