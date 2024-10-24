@@ -10,8 +10,7 @@ get_volume() {
 
 case "$1" in
     mute)
-        volume=$(get_volume)
-        if [ $volume -eq 0 ]
+        if [ $(get_volume) -eq 0 ]
         then
             pactl set-sink-mute @DEFAULT_SINK@ 1
         else
@@ -19,21 +18,18 @@ case "$1" in
         fi
         ;;
     decrease)
-        muted=$(get_muted)
-        if [ "$muted" == "no" ]
+        if [ $(get_muted) == "no" ]
         then
             pactl set-sink-volume @DEFAULT_SINK@ -5%
 
-            volume=$(get_volume)
-            if [ $volume -eq 0 ]
+            if [ $(get_volume) -eq 0 ]
             then
                 pactl set-sink-mute @DEFAULT_SINK@ 1
             fi
         fi
         ;;
     increase)
-        muted=$(get_muted)
-        if [ "$muted" == "yes" ]
+        if [ $(get_muted) == "yes" ]
         then
             pactl set-sink-mute @DEFAULT_SINK@ 0
         fi
