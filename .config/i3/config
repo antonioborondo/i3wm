@@ -53,11 +53,12 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+set $program_launcher "rofi -modi drun,run -show drun"
+bindsym $mod+d exec --no-startup-id $program_launcher
 
 # change focus
 bindsym $mod+j focus left
@@ -214,7 +215,7 @@ bindsym Mod4+p mode "$mode_output"
 bindsym Mod4+Shift+p exec --no-startup-id i3-output --type auto
 
 # Search
-bindsym XF86Search exec --no-startup-id dmenu_run
+bindsym XF86Search exec --no-startup-id $program_launcher
 
 # Brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id i3-brightness decrease
