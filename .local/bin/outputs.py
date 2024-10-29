@@ -82,30 +82,33 @@ class Output:
         subprocess.run(command, shell=True)
 
 
-def get() -> List[Output]:
-    command = "xrandr | grep -A 1 --no-group-separator -w connected"
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    lines = result.stdout.strip().split("\n")
+class Outputs(list):
+    def __init__(self):
+        super().__init__()
+        self.update()
 
-    outputs: List[Output] = []
-    for i in range(0, len(lines) - 1, 2):
+    def update(self):
+        command = "xrandr | grep -A 1 --no-group-separator -w connected"
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        lines = result.stdout.strip().split("\n")
 
-        output = Output()
+        self.clear()
+        for i in range(0, len(lines) - 1, 2):
 
-        id_match = re.search(r"^(.+)\sconnected\s.*$", lines[i])
-        output.id = id_match.group(1)
+            output = Output()
 
-        size_match = re.search(r"^.*\s([0-9]+)mm\sx\s([0-9]+)mm$", lines[i])
-        if size_match:
-            output.size = Size(int(size_match.group(1)), int(size_match.group(2)))
+            id_match = re.search(r"^(.+)\sconnected\s.*$", lines[i])
+            output.id = id_match.group(1)
 
-        resolution_match = re.search(
-            r"^\s+([0-9]+)x([0-9]+)\s+[0-9]+\.[0-9]+(?:\*|\s)\+$", lines[i + 1]
-        )
-        output.resolution = Resolution(
-            int(resolution_match.group(1)), int(resolution_match.group(2))
-        )
+            size_match = re.search(r"^.*\s([0-9]+)mm\sx\s([0-9]+)mm$", lines[i])
+            if size_match:
+                output.size = Size(int(size_match.group(1)), int(size_match.group(2)))
 
-        outputs.append(output)
+            resolution_match = re.search(
+                r"^\s+([0-9]+)x([0-9]+)\s+[0-9]+\.[0-9]+(?:\*|\s)\+$", lines[i + 1]
+            )
+            output.resolution = Resolution(
+                int(resolution_match.group(1)), int(resolution_match.group(2))
+            )
 
-    return outputs
+            self.append(output)
