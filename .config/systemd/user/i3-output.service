@@ -1,0 +1,10 @@
+[Install]
+WantedBy=default.target
+
+[Service]
+ExecStart=/home/mega/.local/bin/i3-output-service
+WorkingDirectory=/home/mega/.local/bin/
+
+[Unit]
+Description=i3-output
+After=network.target
