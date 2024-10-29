@@ -8,7 +8,7 @@ class Status(Enum):
     OPEN = "open"
 
 
-def get_status() -> Status:
+def status() -> Status:
     try:
         command = [
             "sh",
