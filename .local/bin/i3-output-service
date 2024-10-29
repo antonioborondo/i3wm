@@ -18,7 +18,7 @@ def main():
     lid_status: lid.Status = lid.Status.UNKNOWN
 
     while True:
-        new_lid_status = lid.get_status()
+        new_lid_status = lid.status()
         if new_lid_status != lid_status:
             lid_status = new_lid_status
             command = "i3-output --type auto"
