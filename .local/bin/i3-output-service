@@ -10,19 +10,27 @@
 #
 # systemctl --user status i3-output.service
 
-import subprocess
 import time
-import lid
+import subprocess
+from outputs import Outputs
+
 
 def main():
-    lid_status: lid.Status = lid.Status.UNKNOWN
+    outputs_number = 1  # Laptop
 
     while True:
-        new_lid_status = lid.status()
-        if new_lid_status != lid_status:
-            lid_status = new_lid_status
+        outputs = Outputs()
+
+        outputs_number_changed = False
+        new_outputs_number = len(outputs)
+        if new_outputs_number != outputs_number:
+            outputs_number = new_outputs_number
+            outputs_number_changed = True
+
+        if outputs_number_changed or not outputs.has_enabled():
             command = "i3-output --type auto"
             subprocess.run(command, shell=True)
+
         time.sleep(5)
 
 
