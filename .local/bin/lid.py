@@ -2,13 +2,12 @@ from enum import Enum
 import subprocess
 
 
-class Status(Enum):
-    UNKNOWN = "unknown"
-    CLOSED = "closed"
-    OPEN = "open"
-
-
 class Lid:
+    class Status(Enum):
+        UNKNOWN = "unknown"
+        CLOSED = "closed"
+        OPEN = "open"
+
     def status(self) -> Status:
         try:
             command = [
@@ -21,12 +20,12 @@ class Lid:
             )
             command_output = command_result.stdout.strip()
 
-            if command_output == Status.CLOSED.value:
-                return Status.CLOSED
-            elif command_output == Status.OPEN.value:
-                return Status.OPEN
+            if command_output == self.Status.CLOSED.value:
+                return self.Status.CLOSED
+            elif command_output == self.Status.OPEN.value:
+                return self.Status.OPEN
             else:
-                return Status.UNKNOWN
+                return self.Status.UNKNOWN
 
         except Exception:
-            return Status.UNKNOWN
+            return self.Status.UNKNOWN
