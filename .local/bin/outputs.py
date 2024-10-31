@@ -3,7 +3,7 @@ from enum import Enum
 from typing import List, Optional
 import re
 import subprocess
-
+import time
 
 @dataclass
 class Resolution:
@@ -112,3 +112,8 @@ class Outputs(list):
             )
 
             self.append(output)
+        time.sleep(1) # Give some time between calls
+        
+    def has_enabled(self) -> bool:
+        return any(output.status() == Status.ENABLED for output in self)
+    
