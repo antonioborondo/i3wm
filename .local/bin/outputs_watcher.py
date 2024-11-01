@@ -1,4 +1,4 @@
-class OutputWatcher:
+class OutputsWatcher:
     _log_last_read_position = 0
     _EDID_KEYWORD = b"EDID"
 
