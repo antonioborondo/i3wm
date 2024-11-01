@@ -12,3 +12,6 @@ class OutputWatcher:
             self._log_last_read_position = log.tell()
 
         return self._EDID_KEYWORD in data
+
+    def reset(self):
+        self.has_changes()
