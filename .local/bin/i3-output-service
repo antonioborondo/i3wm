@@ -10,28 +10,57 @@
 #
 # systemctl --user status i3-output.service
 
-import time
-import subprocess
 from outputs import Outputs
+from outputs_watcher import OutputsWatcher
+import os
+import subprocess
+import time
 
 
 def main():
-    outputs_number = 1  # Laptop
+    outputs_watcher = OutputsWatcher(os.path.expanduser("~/.local/share/xorg/Xorg.0.log"))
 
     while True:
-        outputs = Outputs()
+        print("Check")
+        if outputs_watcher.has_changes():
+            print("Output changes")
 
-        outputs_number_changed = False
-        new_outputs_number = len(outputs)
-        if new_outputs_number != outputs_number:
-            outputs_number = new_outputs_number
-            outputs_number_changed = True
+            # Wait for the monitor to become alive?
+            # i3-output --type auto many times doesn't enable the monitor.
+            # However it works to enable the laptop scren.
+            time.sleep(5)
 
-        if outputs_number_changed or not outputs.has_enabled():
-            command = "i3-output --type auto"
-            subprocess.run(command, shell=True)
+            print("Get outputs")
+            outputs = Outputs()
 
-        time.sleep(5)
+            if len(outputs) == 1:
+                print("Enable laptop")
+                command = "i3-output --type laptop"
+                subprocess.run(command, shell=True)
+            elif len(outputs) == 2:
+                print("Enable monitor")
+                command = "i3-output --type monitor"
+                subprocess.run(command, shell=True)
+
+            # If there are changes, wait
+            time.sleep(5)
+
+            while not outputs.has_enabled():
+                print("Output not enabled")
+                if len(outputs) == 1:
+                    print("Enable laptop")
+                    command = "i3-output --type laptop"
+                    subprocess.run(command, shell=True)
+                elif len(outputs) == 2:
+                    print("Enable monitor")
+                    command = "i3-output --type monitor"
+                    subprocess.run(command, shell=True)
+                time.sleep(5)
+
+            # Manipulating the outputs generates known changes that we don't want to monitor, so we
+            # reset the watcher.
+            outputs_watcher.reset()
+        time.sleep(1)
 
 
 if __name__ == "__main__":

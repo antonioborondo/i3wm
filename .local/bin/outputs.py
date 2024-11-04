@@ -113,7 +113,7 @@ class Outputs(list):
 
             self.append(output)
         time.sleep(1) # Give some time between calls
-        
+
     def has_enabled(self) -> bool:
+        self.update()
         return any(output.status() == Status.ENABLED for output in self)
-    
