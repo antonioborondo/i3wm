@@ -188,6 +188,10 @@ bar {
         status_command i3status
 }
 
+# Automatic back-and-forth when switching to the current workspace
+# https://i3wm.org/docs/userguide.html#workspace_auto_back_and_forth
+workspace_auto_back_and_forth yes
+
 # Volume
 bindsym XF86AudioMute exec --no-startup-id i3-volume mute && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id i3-volume decrease && $refresh_i3status
