@@ -14,6 +14,10 @@ sudo apt update && sudo apt install -y \
     xclip \
     xdotool
 
+# Disable blueman-applet from starting automatically in GNOME
+cp /etc/xdg/autostart/blueman.desktop ${HOME}/.config/autostart/
+echo "NotShowIn=GNOME;" >> ${HOME}/.config/autostart/blueman.desktop
+
 # Add the current user to the video group to adjust the brightness
 sudo usermod -aG video ${USER}
 
