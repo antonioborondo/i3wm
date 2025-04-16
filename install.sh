@@ -9,6 +9,7 @@ sudo apt update && sudo apt install -y \
     i3 \
     maim \
     playerctl \
+    pulseaudio-utils \
     rofi \
     stow \
     xclip \
