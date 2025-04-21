@@ -13,6 +13,7 @@ case "$1" in
     *)
         echo "Usage: $0 {previous|play-pause|next}"
         exit 2
+        ;;
 esac
 
 exit 0

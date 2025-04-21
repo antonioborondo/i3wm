@@ -48,6 +48,7 @@ case "$1" in
     *)
         echo "Usage: $0 {mute|decrease|increase}"
         exit 2
+        ;;
 esac
 
 exit 0

@@ -10,6 +10,7 @@ case "$1" in
     *)
         echo "Usage: $0 {decrease|increase}"
         exit 2
+        ;;
 esac
 
 exit 0

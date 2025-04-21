@@ -22,6 +22,7 @@ case "$1" in
     *)
         echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
         exit 2
+        ;;
 esac
 
 exit 0

@@ -10,6 +10,7 @@ case "$1" in
     *)
         echo "Usage: $0 {laptop|monitor}"
         exit 2
+        ;;
 esac
 
 exit 0

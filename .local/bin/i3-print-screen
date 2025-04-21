@@ -23,6 +23,7 @@ case "$1" in
     *)
         echo "Usage: $0 {desktop|window|selection}"
         exit 2
+        ;;
 esac
 
 exit 0
