@@ -22,6 +22,17 @@ sudo usermod -aG video ${USER}
 cp /etc/xdg/autostart/blueman.desktop ${HOME}/.config/autostart/
 echo "NotShowIn=GNOME;" >> ${HOME}/.config/autostart/blueman.desktop
 
+# Enable tap to click and natural scrolling
+sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
+Section "InputClass"
+    Identifier "touchpad"
+    MatchIsTouchpad "on"
+    Driver "libinput"
+    Option "Tapping" "on"
+    Option "NaturalScrolling" "on"
+EndSection
+EOF
+
 # Fix permissions
 find -type d -exec chmod 700 {} \;
 find -type f -not -name "install.sh" -exec chmod 600 {} \;
