@@ -1,6 +1,6 @@
 # i3wm
 
-[i3wm](https://i3wm.org) installation and basic configuration.
+[i3wm](https://i3wm.org) installation and configuration.
 
 ## Install
 
