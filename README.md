@@ -28,5 +28,5 @@ To use your own background image, you can either replace `~/.background.image` w
 For example:
 
 ```
-ln -s bob-sponge.jpg ~/.background.image
+ln -s ~/Pictures/Wallpapers/bob-sponge.jpg ~/.background.image
 ```
